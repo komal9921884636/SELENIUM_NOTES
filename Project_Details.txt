@@ -1,0 +1,13 @@
+1) Google Drive Project Link
+https://drive.google.com/file/d/11yFRyopoml0F3DWS4V6xxTec8d_AiF7E/view?usp=sharing
+----------------------------
+2) Table Creation Script
+
+Create table jipl_clm_reg_details_phase2(clm_no varchar(50) primary key,
+cover_note varchar(50),pol_no varchar(50),vehical_reg_no varchar(50),
+licen_no varchar(50),delear_flag varchar(20),reg_message varchar(250),
+clm_status varchar(20), clm_reg_date varchar(50),dob varchar(50),
+date_of_accident varchar(50), cause_of_accident varchar(250), place_of_accident
+varchar(100),cust_name varchar(250),driver_name varchar(250),cust_mobileno varchar(10),
+workshop_id varchar(50),workshop_city varchar(50),delear_mob_no varchar(10),
+delear_clm_id varchar(50))
