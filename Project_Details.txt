@@ -34,3 +34,26 @@ input Pay Load
     "delearMobileNo": "9764450273",
     "delearFlag": "HONDA"
 }
+=====================================
+Service : Fetch single claim details
+URI localhost:9090/clm-get-single/clm_no
+method : GET
+
+Service : Delete sinlge claim details
+URI: localhost:9090/clm-del-singlee/1024
+Method :Delete
+=============================================
+Service : Delete Multiple Claim details
+URI: localhost:9090/clm-del-multi
+Request Payload
+[
+  {
+    "claimNo":"1026",
+    "delearFlag":"HONDA"
+  },
+  {
+    "claimNo":"1027",
+    "delearFlag":"HONDA"
+  }
+]
+===============================================
