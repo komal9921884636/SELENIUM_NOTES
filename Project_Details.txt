@@ -38,9 +38,9 @@ input Pay Load
 Service : Fetch single claim details
 URI localhost:9090/clm-get-single/clm_no
 method : GET
-
+=================================
 Service : Delete sinlge claim details
-URI: localhost:9090/clm-del-singlee/1024
+URI: localhost:9090/clm-del-single/1024
 Method :Delete
 =============================================
 Service : Delete Multiple Claim details
