@@ -57,3 +57,14 @@ Request Payload
   }
 ]
 ===============================================
+Service : Update single Claim details
+URI:localhost:9090/clm-update-single
+MEthod: PUT
+Request PayLoad
+
+  {
+    "clmno":"1026",
+    "delearFlag":"HONDA",
+    "custMobileNo":"9763440273",
+    "delearMobileNo":"9822506340"
+  }
