@@ -11,3 +11,26 @@ date_of_accident varchar(50), cause_of_accident varchar(250), place_of_accident
 varchar(100),cust_name varchar(250),driver_name varchar(250),cust_mobileno varchar(10),
 workshop_id varchar(50),workshop_city varchar(50),delear_mob_no varchar(10),
 delear_clm_id varchar(50))
+================================
+Service Name  : Claim Registration
+
+Method: PUT
+URI:localhost:9090/clm-register
+input Pay Load
+{
+    "coverNoteNo":"HA-100123",
+    "customerName": "Kartik",
+    "placeOfAccident": "Nashik",
+    "vehicalRegNo": "MH-12-P-4001",
+    "licenNo": "MH-14-2011-0062821",
+    "accidentDate":"17-May-2022",
+    "causeOfAccident": "Break Fail",
+    "dateOfBith": "05-June-1986",
+    "driveName":"Nayan Tara",
+    "mobileNo": "9764450273",
+    "workshopId":"1010",
+    "workshopCity":"Nashik",
+    "delearClaimId":"PK-22-1801-0000456",
+    "delearMobileNo": "9764450273",
+    "delearFlag": "HONDA"
+}
