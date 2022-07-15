@@ -1,0 +1,92 @@
+Extent Report For Java
+
+Index
+
+1) What is mean by extent Report?
+2) Overview of extent report
+3) Why extent report?
+4) Download and set up extent report
+5) Create a basic extent report
+6) Different log levels of extent report
+7) To log different type of information to extent report
+8) How to attache screen shot to extent report
+9) Different attributes available for Test in extent report
+10) Extent report configuration using Java,JSON and XML
+11) Generating extent report only for failed test case/pass test case
+    skipped test case.
+12) How to generate different extent report?
+13) How to add system/enviroment information to extent report?
+14) Remove or change the order of tabs in extent report
+15) short cuts in the extent report
+16) Integration of extent report with TestNG
+---------------------------------------------------
+Q. What is extent report?
+-> Extent report is a third party library and it is used to
+   produce reports in automation
+
+-> This library is available only for Java and .Net
+
+-> This library is  not 100% open source. It has two editions
+   i) Community Edition -> Free to use
+   ii) Pro-Edition -> Need to Pay
+
+-> The official website of extent report is https://www.extentreports.com/
+
+---------------------------------------------
+Q. How to download and set up extent report?
+
+-> Based on your project type, If your project is normal project then
+   we need to download manually and add into build path
+
+-> If your project is Maven then add dependecy in pom.xml file
+
+   <dependency>
+	<groupId>com.aventstack</groupId>  		        <artifactId>extentreports</artifactId>
+	<version>5.0.9</version>
+   </dependency>
+--------------------------------------------
+Q. How to Create a Basic extent report?
+
+-> 
+
+
+
+---------------------
+Different log levels of extent report
+
+Extent report of 5th version has total 5 log levels
+1) Fail 2) Skip 3) Warning 4) Pass 5) info
+
+But in 4 th version total 8 log levels are available
+and these extra log levels are as below
+1) Fatal 2) ERROR 3) Debug
+
+But these three levels (Fatal, Error and Debug ) are removed in the 
+latest vesersion of Junit so From Extent Report also removed
+---------------------------------------------
+Q. Why Fatal, Error and Debug log levels removed in 5th version of Extent Report?
+Ans: These log levels are remved from Junit and TestNG.
+
+We use Extent report with Junit and TestNG, If Junit and
+TestNg are not using these log level then there is no
+use for Extent Report.
+--------------------------------------------------
+When we apply different log levels on same test case then 
+final result of test case is depends on priority of Log level
+and log level priority is as below
+
+1) Fail 
+2) Skip 
+3) Warning 
+4) Pass 
+5) info
+
+Note: If no log level is mentioned then bydefault is considered as pass.
+
+
+
+
+
+
+
+
