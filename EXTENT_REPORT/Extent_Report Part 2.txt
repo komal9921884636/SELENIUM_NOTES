@@ -1,0 +1,288 @@
+# To log different type of information to extent report
+
+We can log below different type of information in log
+
+1) Text -Bold,Italic
+2) XML
+3) JSON
+4) Collection Data(List, Set, Map)
+5) Hightlight Any Message
+6) Exception
+=================================
+
+Example 1: Log Text Type information in log 
+
+public class ExtentReportLogInfo {
+	public static void main(String[] args) 
+	{
+		
+		ExtentReports report=new ExtentReports();
+		File file=new File("logInfoReport.html");
+		ExtentSparkReporter spark=new ExtentSparkReporter(file);
+		report.attachReporter(spark);
+		
+		report.createTest("Text Based Test")
+		.log(Status.INFO,"Normal info message")
+		.log(Status.INFO,"<b> BOld info message </b>")
+		.log(Status.INFO,"<i> Italic info message </i>")
+		.log(Status.INFO,"<b><i> BOld and Italic message </i></b>");
+		report.flush();
+	}
+
+}
+==========================================
+Example 2: Example 1: Log XML Type information in log  
+
+public class ExtentReportLogInfo {
+
+	public static void main(String[] args) {
+		
+		ExtentReports report=new ExtentReports();
+		File file=new File("logInfoReport.html");
+		ExtentSparkReporter spark=new ExtentSparkReporter(file);
+		report.attachReporter(spark);
+		
+		String XmlData="<menu id=\"file\" value=\"File\">\r\n"
+				+ "  <popup>\r\n"
+				+ "    <menuitem value=\"New\" onclick=\"CreateNewDoc()\" />\r\n"
+				+ "    <menuitem value=\"Open\" onclick=\"OpenDoc()\" />\r\n"
+				+ "    <menuitem value=\"Close\" onclick=\"CloseDoc()\" />\r\n"
+				+ "  </popup>\r\n"
+				+ "</menu>";
+		
+		
+		report.createTest("XML Based Test")
+		.log(Status.INFO,MarkupHelper.createCodeBlock(XmlData, CodeLanguage.XML));
+		report.flush();
+
+	}
+
+}
+==================================
+Example 3: Example 1: To Log JSON Type information in log
+
+public class ExtentReportLogInfo {
+
+	public static void main(String[] args) {
+		
+		ExtentReports report=new ExtentReports();
+		File file=new File("logInfoReport.html");
+		ExtentSparkReporter spark=new ExtentSparkReporter(file);
+		report.attachReporter(spark);
+		
+		String jsonData="{\"menu\": {\r\n"
+				+ "  \"id\": \"file\",\r\n"
+				+ "  \"value\": \"File\",\r\n"
+				+ "  \"popup\": {\r\n"
+				+ "    \"menuitem\": [\r\n"
+				+ "      {\"value\": \"New\", \"onclick\": \"CreateNewDoc()\"},\r\n"
+				+ "      {\"value\": \"Open\", \"onclick\": \"OpenDoc()\"},\r\n"
+				+ "      {\"value\": \"Close\", \"onclick\": \"CloseDoc()\"}\r\n"
+				+ "    ]\r\n"
+				+ "  }\r\n"
+				+ "}}";
+		
+		
+		report.createTest("JSON Based Test")
+		.log(Status.INFO,MarkupHelper.createCodeBlock(jsonData, CodeLanguage.JSON));
+		
+		
+		report.flush();
+
+	}
+
+}
+Example 4:  To Log Collection-List Type information in log
+
+
+public class ExtentReportLogInfo {
+
+	public static void main(String[] args) {
+		
+		ExtentReports report=new ExtentReports();
+		File file=new File("logInfoReport.html");
+		ExtentSparkReporter spark=new ExtentSparkReporter(file);
+		report.attachReporter(spark);
+		
+		List<String> list=new ArrayList<String>();
+		list.add("A");
+		list.add("ABC");
+		list.add("XYZ");
+		
+		
+		report.createTest("Collection -List Based Test 1")
+		.log(Status.INFO,MarkupHelper.createOrderedList(list))
+		.log(Status.INFO,MarkupHelper.createUnorderedList(list));
+		
+		report.createTest("Collection -List Based Test 2")
+		.info(MarkupHelper.createOrderedList(list))
+        .info(MarkupHelper.createUnorderedList(list));
+		
+		report.flush();
+
+	}
+
+}
+===========================================
+Example 5:  To Log Collection-Set Type information in log
+
+public class ExtentReportLogInfo {
+
+	public static void main(String[] args) {
+		
+		ExtentReports report=new ExtentReports();
+		File file=new File("logInfoReport.html");
+		ExtentSparkReporter spark=new ExtentSparkReporter(file);
+		report.attachReporter(spark);
+		
+		Set<String> set=new HashSet<String>();
+		set.add("A");
+		set.add("ABC");
+		set.add("XYZ");
+		
+		
+		report.createTest("Collection -Set Based Test 1")
+		.log(Status.INFO,MarkupHelper.createOrderedList(set))
+		.log(Status.INFO,MarkupHelper.createUnorderedList(set));
+		
+		report.createTest("Collection -Set Based Test 2")
+		.info(MarkupHelper.createOrderedList(set))
+        .info(MarkupHelper.createUnorderedList(set));
+		
+		report.flush();
+
+	}
+
+}
+================================
+Example 6: Highlight Text in Log 
+
+public class ExtentReportLogInfo {
+
+	public static void main(String[] args) {
+		
+		ExtentReports report=new ExtentReports();
+		File file=new File("logInfoReport.html");
+		ExtentSparkReporter spark=new ExtentSparkReporter(file);
+		report.attachReporter(spark);
+		
+		report.createTest("Higlight Text ")
+		.info(MarkupHelper.createLabel("Error has Occured",ExtentColor.RED))
+		.info(MarkupHelper.createLabel("Warning Message",ExtentColor.BROWN))
+		.info(MarkupHelper.createLabel("Information Message ",ExtentColor.GREEN));
+		
+		
+		report.flush();
+
+	}
+
+}
+
+Example 7: add Exception info in log
+
+public class ExtentReportLogInfo {
+
+	public static void main(String[] args) {
+		
+		ExtentReports report=new ExtentReports();
+		File file=new File("logInfoReport.html");
+		ExtentSparkReporter spark=new ExtentSparkReporter(file);
+		report.attachReporter(spark);
+		
+		Throwable t=new RuntimeException("Exception Occured while Executing Test");
+		
+		report.createTest("Exception Test")
+		.info(t);
+		
+		report.flush();
+
+	}
+
+}
+Example 8: add Exception info in log 
+
+public class ExtentReportLogInfo {
+
+	public static void main(String[] args) {
+		
+		ExtentReports report=new ExtentReports();
+		File file=new File("logInfoReport.html");
+		ExtentSparkReporter spark=new ExtentSparkReporter(file);
+		report.attachReporter(spark);
+		
+		try
+		{
+			int a=10/0;
+		}
+		catch (Exception e) {
+			report.createTest("Exception Test")
+			.info(e);
+		}
+		report.flush();
+
+	}
+
+}
+=====================================================
+# How to attache screen shot to extent report?
+
+-> We can attache screen shot at Test Level and Log Level
+
+# How to attach screen shot at Test Level
+
+Example 1
+
+public class ExtentReportLogInfo {
+
+	private static WebDriver driver;
+	public static void main(String[] args) {
+		
+		ExtentReports report=new ExtentReports();
+		File file=new File("logInfoReport.html");
+		ExtentSparkReporter spark=new ExtentSparkReporter(file);
+		report.attachReporter(spark);
+		
+		WebDriverManager.chromedriver().setup();
+		driver=new ChromeDriver();
+		driver.get("https://json.org/example.html");
+		String base64=takeScreenShot();
+		
+		String filePath=takeScreenShot("JsonFormat");
+		
+		report.createTest("Attach Screen Shot")
+		.info("This is Info Message")
+		.addScreenCaptureFromBase64String(base64)
+		.addScreenCaptureFromBase64String(base64)
+		.addScreenCaptureFromBase64String(base64,"This is JSON Web Screen shot1")
+		.addScreenCaptureFromBase64String(base64,"This is JSON Web Screen shot2")
+		.addScreenCaptureFromPath(filePath)
+		.addScreenCaptureFromPath(filePath,"Screen Shot With File Path Demo");
+		
+		report.flush();
+		driver.close();
+
+	}
+	public static String takeScreenShot() 
+	{
+
+		System.out.println("inside takeScreenShot");
+		TakesScreenshot ts=(TakesScreenshot)driver;
+		String base64=ts.getScreenshotAs(OutputType.BASE64);
+		 System.out.println("screedn shot taken");
+		 return base64;
+	}
+	public static String takeScreenShot(String fileName)
+	{
+		TakesScreenshot ts=(TakesScreenshot)driver;
+		File source=ts.getScreenshotAs(OutputType.FILE);
+		
+		File dest=new File("./screenshot/"+fileName);
+		try {
+			FileUtils.copyFile(source, dest);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dest.getAbsolutePath();
+	}
+} 
