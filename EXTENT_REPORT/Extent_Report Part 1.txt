@@ -10,7 +10,7 @@ Index
 6) Different log levels of extent report
 7) To log different type of information to extent report
 8) How to attache screen shot to extent report
-9) Different attributes available for Test in extent report
+9)  Different attributes available for Test in extent report
 10) Extent report configuration using Java,JSON and XML
 11) Generating extent report only for failed test case/pass test case
     skipped test case.

@@ -1,0 +1,318 @@
+Example : Adding Author, Category and Device Information to Test
+
+public class ExtentReport {
+
+	
+	public static void main(String[] args) {
+		
+		ExtentReports report=new ExtentReports();
+		File file=new File("logInfoReport.html");
+		ExtentSparkReporter spark=new ExtentSparkReporter(file);
+		report.attachReporter(spark);
+		
+		 report.createTest("Test 1")
+		.assignAuthor("Robin")
+		.assignCategory("Smoke")
+		.assignDevice("ChromeBrowser")
+		.pass("Passed Test");
+		
+		report.createTest("Test 2")
+		.assignAuthor("Vijay")
+		.assignCategory("Sanity")
+		.assignDevice("Safari")
+		.fail("Passed Test");
+		
+		report.createTest("Test 2")
+		.assignAuthor("Jay")
+		.assignCategory("Regression")
+		.assignDevice("Edge")
+		.warning("Some Warning Message here..");
+		
+		
+		report.flush();
+		
+
+	}
+	
+}
+----------------------------
+Example : Its not mandatory to Specify all the information 
+we can  specify only Author name 
+Only Device information
+Only Category Information
+Or any Combination
+
+public class ExtentReport {
+
+	
+	public static void main(String[] args) {
+		
+		ExtentReports report=new ExtentReports();
+		File file=new File("logInfoReport.html");
+		ExtentSparkReporter spark=new ExtentSparkReporter(file);
+		report.attachReporter(spark);
+		
+		 report.createTest("Test 1")
+		.assignAuthor("Robin")
+		.assignCategory("Smoke")
+		.pass("Passed Test");
+		
+		 report.createTest("Test 2")
+		.assignAuthor("Vijay")
+		.assignDevice("Safari")
+		.fail("Passed Test");
+		
+		 report.createTest("Test 3")
+		.assignCategory("Regression")
+		.assignDevice("Edge")
+		.warning("Some Warning Message here..");
+
+		report.flush();
+		
+	}
+}
+---------------------------
+Example : Proivding multiple Author,Device and Category
+information for single Test
+
+public class ExtentReportLogInfo {
+	public static void main(String[] args) {
+		
+		ExtentReports report=new ExtentReports();
+		File file=new File("logInfoReport.html");
+		ExtentSparkReporter spark=new ExtentSparkReporter(file);
+		report.attachReporter(spark);
+		
+		 report.createTest("Test 1")
+		.assignAuthor("Monika","Jay","Robin")
+		.assignCategory("Smoke","Sanity","Regression","UnitTesting")
+		.assignDevice("Chrome","Safar","Edge")
+		.pass("Passed Test");
+		
+		 report.createTest("Test 2")
+		.assignAuthor("Vijay")
+		.assignDevice("Safari")
+		.fail("Passed Test");
+		
+		 report.createTest("Test 3")
+		.assignCategory("Regression")
+		.assignDevice("Edge")
+		.warning("Some Warning Message here..");
+
+		report.flush();
+		
+
+	}
+	
+}
+=============================
+10) Extent report configuration using Java,JSON and XML
+
+For extent report we can change look and feel for below properties
+
+1) Change the Theme
+
+2) Change Report Name
+
+3) Change Document Title
+
+4) Change Date and time stamp format of report creation
+
+5) Apply CSS
+
+6) Run Java Script
+
+Example 1: Java Configuaratin
+
+public class ExtentReportLogInfo {
+
+	
+	public static void main(String[] args) {
+		
+		ExtentReports report=new ExtentReports();
+		File file=new File("logInfoReport.html");
+		ExtentSparkReporter spark=new ExtentSparkReporter(file);
+		report.attachReporter(spark);
+		spark.config().setTheme(Theme.DARK); 
+		spark.config().setReportName("Reporter Name is Here"); 
+		spark.config().setDocumentTitle("Document Title is Here"); 
+		spark.config().setTimeStampFormat("dd-MMM-YYYY hh:mm:ss");
+		spark.config().setCss(".badge-primary{background-color: #df658f;}");
+		spark.config().setJs("document.getElementByClassName('logo')[0].styleDisplay=none;");
+		
+		report.createTest("Test 1")
+		.assignAuthor("Monika","Jay","Robin")
+		.assignCategory("Smoke","Sanity","Regression","UnitTesting")
+		.assignDevice("Chrome","Safar","Edge")
+		.pass("Passed Test");
+		
+		 report.createTest("Test 2")
+		.assignAuthor("Vijay")
+		.assignDevice("Safari")
+		.fail("Passed Test");
+		
+		 report.createTest("Test 3")
+		.assignCategory("Regression")
+		.assignDevice("Edge")
+		.warning("Some Warning Message here..");
+
+		report.flush();
+	
+	}
+	
+}
+================================
+JSON Configuaration
+
+JSON Template
+{
+  "theme": "STANDARD",
+  "encoding": "utf-8",
+  "protocol": "HTTPS",
+  "timelineEnabled": false,
+  "offlineMode": true,
+  "thumbnailForBase64": false,
+  "documentTitle": "JSON REPORT",
+  "reportName": "JSON TITLE",
+  "timeStampFormat": "YYYY-MM-DD hh:mm:ss",
+  "js": "",
+  "css": ""
+}
+Create a file like "extent-config-report.json"
+and put this JSON data and load this inside extent report as below
+
+public class ExtentReportLogInfo {
+
+	
+	public static void main(String[] args) throws IOException {
+		
+		ExtentReports report=new ExtentReports();
+		File file=new File("logInfoReport.html");
+		ExtentSparkReporter spark=new ExtentSparkReporter(file);
+		report.attachReporter(spark);
+		
+		String filePath="./src/test/resources/extent-config-report.json";
+		File jsonFile=new File(filePath);
+		spark.loadJSONConfig(jsonFile);
+		// or in single line we can add as below
+		spark.loadJSONConfig(new File("./src/test/resources/extent-config-report.json"));
+		
+		 report.createTest("Test 1")
+		.assignAuthor("Monika","Jay","Robin")
+		.assignCategory("Smoke","Sanity","Regression","UnitTesting")
+		.assignDevice("Chrome","Safar","Edge")
+		.pass("Passed Test");
+		
+		 report.createTest("Test 2")
+		.assignAuthor("Vijay")
+		.assignDevice("Safari")
+		.fail("Passed Test");
+		
+		 report.createTest("Test 3")
+		.assignCategory("Regression")
+		.assignDevice("Edge")
+		.warning("Some Warning Message here..");
+
+		report.flush();
+		
+
+	}
+	
+}
+================
+XML Configuaratin
+
+Use  below XML Template and put in a file named as
+"extent-report-config.xml"
+
+<?xml version="1.0" encoding="UTF-8"?>
+<extentreports>
+  <configuration>
+
+    <!-- report theme -->
+    <!-- STANDARD, DARK -->
+    <theme>DARK</theme>
+
+    <!-- document encoding -->
+    <!-- defaults to UTF-8 -->
+    <encoding>UTF-8</encoding>
+
+    <!-- protocol for script and stylesheets -->
+    <!-- defaults to https -->
+    <!-- HTTP, HTTPS -->
+    <protocol>HTTPS</protocol>
+
+    <!-- offline report -->
+    <timelineEnabled>true</timelineEnabled>
+    
+    <!-- offline report -->
+    <enableOfflineMode>false</enableOfflineMode>
+    
+    <!-- use thumbnails for base64 images -->
+    <!-- this may slowdown viewing tests -->
+    <thumbnailForBase64>false</thumbnailForBase64>
+
+    <!-- title of the document -->
+    <documentTitle>XML Title</documentTitle>
+
+    <!-- report name - displayed at top-nav -->
+    <reportName>XML Report</reportName>
+
+    <!-- timestamp format -->
+    <timeStampFormat>hh:mm:ss dd/mm/yyyy</timeStampFormat>
+
+    <!-- custom javascript -->
+    <scripts>
+      <![CDATA[
+        $(document).ready(function() {
+            
+        });
+      ]]>
+    </scripts>
+
+    <!-- custom styles -->
+    <styles>
+      <![CDATA[
+      
+      ]]>
+    </styles>
+
+  </configuration>
+</extentreports>
+
+-----Java Code is as below--------------
+public class ExtentReportLogInfo {
+
+	
+	public static void main(String[] args) throws IOException {
+		
+		ExtentReports report=new ExtentReports();
+		File file=new File("logInfoReport.html");
+		ExtentSparkReporter spark=new ExtentSparkReporter(file);
+		report.attachReporter(spark);
+		
+		String filePath="./src/test/resources/extent-report-config.xml";
+		File xmlFile=new File(filePath);
+		spark.loadXMLConfig(xmlFile);
+		
+		 report.createTest("Test 1")
+		.assignAuthor("Monika","Jay","Robin")
+		.assignCategory("Smoke","Sanity","Regression","UnitTesting")
+		.assignDevice("Chrome","Safar","Edge")
+		.pass("Passed Test");
+		
+		 report.createTest("Test 2")
+		.assignAuthor("Vijay")
+		.assignDevice("Safari")
+		.fail("Passed Test");
+		
+		 report.createTest("Test 3")
+		.assignCategory("Regression")
+		.assignDevice("Edge")
+		.warning("Some Warning Message here..");
+
+		report.flush();
+	
+	}
+	
+}
